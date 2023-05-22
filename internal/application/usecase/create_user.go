@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	user2 "generate-id-use-autoincrement/internal/domain/user"
+	"generate-id-use-autoincrement/internal/domain/user"
 )
 
 type CreateUserUsecase interface {
@@ -12,10 +12,10 @@ type CreateUserUsecase interface {
 }
 
 type createUserUsecase struct {
-	userRepository user2.Repository
+	userRepository user.Repository
 }
 
-func NewCreateUserUsecase(repository user2.Repository) CreateUserUsecase {
+func NewCreateUserUsecase(repository user.Repository) CreateUserUsecase {
 	return &createUserUsecase{userRepository: repository}
 }
 
@@ -23,7 +23,7 @@ func (u *createUserUsecase) Execute(ctx context.Context, name string) error {
 
 	// ユーザーの新規作成
 	// この時にユーザーのIDは設定しない
-	newUser := user2.NewUser(name)
+	newUser := user.NewUser(name)
 
 	// ユーザーの保存
 	// 保存時に初めて、IDが設定される
